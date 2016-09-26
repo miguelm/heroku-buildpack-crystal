@@ -59,8 +59,14 @@ if [ -f shard.yml ]; then
     echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
     $CRYSTAL_DIR/bin/crystal build src/${shard_name}.cr --release -o app
   fi
+
 else
   echo "-----> Compiling app.cr (create shard.yml to override, learn more: https://github.com/ysbaddaden/shards)"
   $CRYSTAL_DIR/bin/crystal build app.cr --release
 fi
 
+# Builds sidekiq
+if [ -f src/sidekiq.cr ]; then
+  echo "-----> Compiling sidekiq.cr"
+  $CRYSTAL_DIR/bin/crystal build src/sidekiq.cr --release -o sidekiq
+fi

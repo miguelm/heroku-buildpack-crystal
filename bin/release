@@ -5,4 +5,5 @@ cat << EOF
 addons:
 default_process_types:
   web: ./app --port \$PORT
+  worker: ./sidekiq -c 3
 EOF
